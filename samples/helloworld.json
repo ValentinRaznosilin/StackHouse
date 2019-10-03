@@ -1,0 +1,8 @@
+{
+ "args"        : [],
+ "project"     : ".\\helloworld.txt",
+ "immediate"   : ".\\helloworld_(ime).txt",
+ "report"      : ".\\helloworld_(rep).txt",
+ "execute"     : "hello",
+ "pressanykey" : true
+}
