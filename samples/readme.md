@@ -15,7 +15,25 @@
 
 # Immediate files
 
-Special keyword "IMMEDIATE" is for mark file as an entire program already prepared for compiling and execution. It is how looks project source code after preprocessor. It is not contains any includes, macros definitions or unexpanded macros calls, labels or user function names (global names keeps present). This is exactly the form of program text that can be encoded in binary format and executed by the interpreter.
+Special keyword "IMMEDIATE" is for mark file as an entire program already prepared for compiling and execution. It is how looks project source code after preprocessor. It is not contains any includes, macros definitions or unexpanded macros calls, labels or user function names (global names keeps present). This is exactly the form of program text that can be encoded in binary format and executed by the interpreter:
+| Source | Immediate |
+| - | - |
+| `func loop L:2 S:4` | `FUNC LOOP LOCAL:2 STACK:4` |
+| ` mov 1 .L0       ` | ` MOV 1 .L0               ` |
+| ` mov 0 .L1       ` | ` MOV 0 .L1               ` |
+| `  :begin         ` | ` PUSH .L0 100000         ` |
+| ` push .L0 100000 ` | ` JN INT <= 9             ` |
+| ` jn int <= :end  ` | ` PUSH .L1 .L0            ` |
+| ` push .L1 .L0    ` | ` IADD                    ` |
+| ` iadd            ` | ` POP .L1                 ` |
+| ` pop .L1         ` | ` INC .L0 1               ` |
+| ` inc .L0 1       ` | ` JUMP 2                  ` |
+| ` jump :begin     ` | ` PUSH .L1 0              ` |
+| `  :end           ` | ` CALL %PRINTL            ` |
+| ` push .L1 0      ` | ` RET                     ` |
+| ` call %printl    ` | `END FUNC                  ` |
+| ` ret             ` | `` |
+| `end func         ` | `` |
 
 # Samples list
 - Hello, World! (helloworld.json)
