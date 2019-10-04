@@ -16,6 +16,7 @@
 # Immediate files
 
 Special keyword "IMMEDIATE" is for mark file as an entire program already prepared for compiling and execution. It is how looks project source code after preprocessor. It is not contains any includes, macros definitions or unexpanded macros calls, labels or user function names (global names keeps present). This is exactly the form of program text that can be encoded in binary format and executed by the interpreter:
+
 | Source | Immediate |
 | - | - |
 | `func loop L:2 S:4` | `FUNC LOOP LOCAL:2 STACK:4` |
@@ -32,8 +33,8 @@ Special keyword "IMMEDIATE" is for mark file as an entire program already prepar
 | `  :end           ` | ` CALL %PRINTL            ` |
 | ` push .L1 0      ` | ` RET                     ` |
 | ` call %printl    ` | `END FUNC                  ` |
-| ` ret             ` | `` |
-| `end func         ` | `` |
+| ` ret             ` | |
+| `end func         ` | |
 
 # Samples list
 - Hello, World! (helloworld.json)
