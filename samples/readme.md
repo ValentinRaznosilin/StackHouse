@@ -33,8 +33,8 @@ Special keyword "IMMEDIATE" is for mark file as an entire program already prepar
 | `  :end           ` | ` CALL %PRINTL            ` |
 | ` push .L1 0      ` | ` RET                     ` |
 | ` call %printl    ` | `END FUNC                  ` |
-| ` ret             ` | `` |
-| `end func         ` | `` |
+| ` ret             ` | |
+| `end func         ` | |
 
 # Samples list
 - Hello, World! (helloworld.json)
