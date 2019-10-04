@@ -1,0 +1,23 @@
+Start build ".\sources\simpleloop.txt" at 14:54:47:971
+
+1 file(s) successfully included in project
+
+ ******** Externals (0) ********
+
+ ******** Global data (0) ********
+
+Total 0 bytes allocated
+
+ ******** Macros (0) ********
+
+
+0 macros calls expanded to 0 lines
+
+ ******** Functions (2) ********
+
+   0 SIMPLELOOP.TXT            LOOP                        12 lines; L:2  S:4 
+   1 SIMPLELOOP.TXT            LOOP_TRICKY                 11 lines; L:1  S:4 
+
+2 function(s) compiled successfully (23 commands total)
+
+Project finished at 14:54:47:971 (0.45 ms total)

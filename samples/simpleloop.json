@@ -1,0 +1,8 @@
+{
+ "args"        : [],
+ "project"     : ".\\sources\\simpleloop.txt",
+ "immediate"   : ".\\immediates\\simpleloop_(ime).txt",
+ "report"      : ".\\reports\\simpleloop_(rep).txt",
+ "execute"     : "loop",
+ "pressanykey" : true
+}

@@ -1,0 +1,24 @@
+Start build ".\sources\loopwithbranch.txt" at 19:15:03:148
+
+1 file(s) successfully included in project
+
+ ******** Externals (0) ********
+
+ ******** Global data (0) ********
+
+Total 0 bytes allocated
+
+ ******** Macros (2) ********
+
+   0 LOOPWITHBRANCH.TXT        _FOR_                        8 lines <ID> <COUNTER> <FROM> <TO> <BODY> 
+   1 LOOPWITHBRANCH.TXT        _BODY                       18 lines 
+
+1 macros calls expanded to 25 lines
+
+ ******** Functions (1) ********
+
+   0 LOOPWITHBRANCH.TXT        LOOP                        29 lines; L:3  S:8 
+
+1 function(s) compiled successfully (29 commands total)
+
+Project finished at 19:15:03:148 (0.44 ms total)

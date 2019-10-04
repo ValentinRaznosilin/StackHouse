@@ -1,0 +1,39 @@
+; Original file : "C:\HOME\PROJECTS\STACKHOUSE\SOURCE\SAMPLES\SOURCES\LOOPWITHBRANCH.TXT"
+
+ IMMEDIATE
+
+; USER FUNCTIONS
+
+ ; .F0 (29 instructions)
+ FUNC LOOP LOCAL:3 STACK:8
+  MOV 0.0 .L1 
+  MOV 0.0 .L2 
+  MOV 1 .L0 
+  PUSH .L0 100000 
+  JN INT <= 23 
+  PUSH .L0 2 
+  MOD 
+  JNZ 15 
+  PUSH .L1 .L0 
+  ITOF 
+  PUSH 1.33 
+  FDIV 
+  FADD 
+  POP .L1 
+  JUMP 21 
+  PUSH .L2 .L0 
+  PUSH 3 
+  IDIV 
+  ITOF 
+  FADD 
+  POP .L2 
+  INC .L0 1 
+  JUMP 3 
+  PUSH .L1 .L2 
+  FADD 
+  STORE .L1 
+  PUSH 1 
+  CALL %PRINTL 
+  RET 
+ END FUNC
+

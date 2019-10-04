@@ -1,0 +1,67 @@
+; program : loop with branch 
+; s1 := 0.0;
+; s2 := 0.0;
+; for i:=1 to 100000 do
+;  if i mod 2 = 0
+;   then s1 := s1 + i / 1.33
+;   else s2 := s2 + i div 3;
+; s1 := s1 + s2;
+
+; it is demonstrated power of macros; with this macro we can ignore assembler coding style
+; open "immediate" image of this program to watch real low-level code for interpreter
+ 
+ macro _for_ <id> <counter> <from> <to> <body>
+  mov <from> <counter>      ; init counter
+   :loop_begin_<id>         ; we need <id> only for generate unique labels inside same function
+  push <counter> <to>       ; counter & loop times on stack
+  jn int <= :loop_end_<id>  ; compare & jump to loop end if need
+  <body>                    ; insert loop body
+  inc <counter> 1           ; increment counter
+  jump :loop_begin_<id>     ; go to loop start
+   :loop_end_<id>
+ end macro
+ 
+func loop L:3 S:8
+
+ ; we must use "." to explicitly tell the interpreter that the values are floating point numbers
+ mov 0.0 .L1 ; s1 = 0.0 as double
+ mov 0.0 .L2 ; s2 = 0.0 as double
+
+ ; it is single loop in this function so skip <id>
+ _for_ ? .L0 1 100000 _body 
+  macro _body         ; it is allowed to describe macro directly inside function
+   push .L0 2         ; i, 2 on stack
+   mod                ; i mod 2 on stack
+   jnz :else          ; jump to :else if (i mod 2 != 0)
+   
+   ; than branch
+   push .L1 .L0       ; s1, i on stack
+   itof               ; s1, double(i) on stack
+   push 1.33          ; s1, double(i), 1.33
+   fdiv               ; s1, double(i) / 1.33
+   fadd               ; s1 + double(i) / 1.33
+   pop .L1            ; save s1
+   jump :if_end       ; jump to if end
+   
+   ; else branch
+    :else
+   push .L2 .L0       ; s2, i on stack
+   push 3             ; s2, i, 3
+   idiv               ; s2, i div 3
+   itof               ; s2, double(i div 3)
+   fadd               ; s2 + double(i div 3)
+   pop .L2            ; save s2
+    :if_end
+  end macro
+ 
+ ; final calculation
+ push .L1 .L2 ; s1, s2 on stack
+ fadd         ; s1 + s2
+ store .L1    ; s1 = s1 + s2; keep value on stack!
+ 
+ ; output result
+ push 1          ; result already on stack so just push DATA_FLOAT directive for %printl
+ call %printl    ; call system function to print float from stack and line feed
+ ret             ; return control to caller
+
+end func

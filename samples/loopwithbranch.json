@@ -1,0 +1,8 @@
+{
+ "args"        : [],
+ "project"     : ".\\sources\\loopwithbranch.txt",
+ "immediate"   : ".\\immediates\\loopwithbranch_(ime).txt",
+ "report"      : ".\\reports\\loopwithbranch_(rep).txt",
+ "execute"     : "loop",
+ "pressanykey" : true
+}

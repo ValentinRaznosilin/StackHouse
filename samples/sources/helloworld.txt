@@ -1,0 +1,40 @@
+ ; this is a comment!
+ ; program : Hello, World!
+
+ ; global data shared between all functions of a program and all its forks
+ ; <keyword> <name> <type> <value>
+ data prompt str "Enter your name, stranger: "
+
+ ; this is a macro! its makes your life much easy
+ ; <keyword> <_name> <arg list>
+ macro _printstr <text> <lf>
+  push <text> 5    ; push args for system call "print" or "printl"
+  call %print<lf>  ; <lf>="L"|"l" - line feed; <lf>="?" - arg skipped so no line feed;
+ end macro
+
+; only function in this program
+; <keyword> <name> <locals count> <stack size>
+func hello L:1 S:8
+
+ ; print prompt via macro, used fully qualified global data name, no line feed
+ _printstr %helloworld:prompt ?
+
+ ; wait for user input
+ push 5      ; 5 is const DATA_ARRAY_CHAR (aka string)
+ call %input ; system function for console input for int, float, char, string
+
+ ; so at now we have on top of stack pointer to string that user was typed
+ pop .L0 ; save string pointer into local variable .L0
+
+ ; printing "hello world" line part by part (string concatenation is not subject of this program)
+ _printstr "Hello, " ?
+ _printstr .L0 ?
+ _printstr "!" L ; do not forget about the line feed!
+
+ ; gracefully free dynamically allocated memory for string
+ free .L0
+
+ ; return control to caller; it's not return any data to caller stack!
+ ret
+
+end func
